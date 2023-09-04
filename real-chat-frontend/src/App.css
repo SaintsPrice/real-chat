@@ -1,0 +1,36 @@
+:root {
+  --background-color: #ffffff;
+}
+
+html {
+  margin: 0 auto;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+@import url(./vendor/fonts.css);
+
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__title/header__title.css);
+
+@import url(./blocks/auth/auth.css);
+@import url(./blocks/auth/__login/auth__login.css);
+@import url(./blocks/auth/__register/auth__register.css);
+@import url(./blocks/auth/__title/auth__title.css);
+@import url(./blocks/auth/__description/auth__description.css);
+@import url(./blocks/auth/__form/auth__form.css);
+@import url(./blocks/auth/__input/auth__input.css);
+@import url(./blocks/auth/__label/auth__label.css);
+@import url(./blocks/auth/__error/auth__error.css);
+@import url(./blocks/auth/__input/_error/auth__input_error.css);
+@import url(./blocks/auth/__submit/auth__submit.css);
