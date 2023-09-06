@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux"
 import useInput from "../validation/useInput"
+import { useActions } from "../hooks/useActions"
 
 function Login({onHandleLogin}) {
 
@@ -10,9 +12,12 @@ function Login({onHandleLogin}) {
 
     const isValid = email.validMessages.length > 0 || password.validMessages.length > 0
 
+    const {login} = useActions()
+    const {loginError} = useSelector(state => state.user)
+
     function handleSubmit(e) {
         e.preventDefault(e)
-        console.log('submit')
+        login(email.value, password.value)
     };
 
     return (
@@ -27,6 +32,7 @@ function Login({onHandleLogin}) {
                 <label className="auth__label" htmlFor="password">Пароль</label>
                 {isPasswordValid && <p className="auth__error" style={{color: 'red'}}>{password.validMessages}</p>}
                 <input onChange={password.onChange} onBlur={password.onBlur} value={password.value} className={`auth__input ${isPasswordValid && 'auth__input_error'}`} type="password" id="password" placeholder="Введите ваш пароль" required />
+                {loginError && <p className="auth__error" style={{color: 'red'}}>{loginError}</p>}
                 <button disabled={isValid} className="auth__submit" type="submit">Войти</button>
             </form>
         </div>

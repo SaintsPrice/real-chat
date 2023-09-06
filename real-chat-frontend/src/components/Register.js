@@ -1,32 +1,38 @@
-import { useState } from "react"
-import useInput from "../validation/useInput"
+import { useState } from "react";
+import useInput from "../validation/useInput";
+import { useActions } from "../hooks/useActions";
+import { useSelector } from "react-redux";
 
 function Register({onHandleLogin}) {
 
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isEmail: true})
-    const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30})
-    const secondName = useInput('', {isEmpty: true, minLength: 3, maxLength: 30})
-    const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30})
-    const secondPassword = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, confirmPass: confirmPassword})
+    const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isEmail: true});
+    const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
+    const secondName = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
+    const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
+    const secondPassword = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, confirmPass: confirmPassword});
 
-    const isEmailValid = email.isDirty && email.validMessages.length > 0
-    const isNameValid = name.isDirty && name.validMessages.length > 0
-    const isSecondNameValid = secondName.isDirty && secondName.validMessages.length > 0
-    const isPasswordValid = password.isDirty && password.validMessages.length > 0
-    const isSecondPasswordValid = secondPassword.isDirty && secondPassword.validMessages.length > 0
+    const isEmailValid = email.isDirty && email.validMessages.length > 0;
+    const isNameValid = name.isDirty && name.validMessages.length > 0;
+    const isSecondNameValid = secondName.isDirty && secondName.validMessages.length > 0;
+    const isPasswordValid = password.isDirty && password.validMessages.length > 0;
+    const isSecondPasswordValid = secondPassword.isDirty && secondPassword.validMessages.length > 0;
 
-    const isValid = email.validMessages.length > 0 || name.validMessages.length > 0 || secondName.validMessages.length > 0|| password.validMessages.length > 0 || secondPassword.validMessages.length > 0
+    const isValid = email.validMessages.length > 0 || name.validMessages.length > 0 || secondName.validMessages.length > 0|| password.validMessages.length > 0 || secondPassword.validMessages.length > 0;
 
     function handleConfirmPassword(e) {
         setConfirmPassword(e.target.value)
         password.onChange(e)
-    }
+    };
+
+    const {registerError} = useSelector(state => state.user)
+    const {registration} = useActions();
 
     function handleSubmit(e) {
         e.preventDefault(e)
-    }
+        registration(email.value, name.value, secondName.value, password.value)
+    };
 
     return (
         <div className="auth__register">
@@ -49,10 +55,11 @@ function Register({onHandleLogin}) {
                 <label className="auth__label" htmlFor="confirm__password">Повторите пароль</label>
                 {isSecondPasswordValid && <p className="auth__error" style={{color: 'red'}}>{secondPassword.validMessages}</p>}
                 <input onChange={secondPassword.onChange} onBlur={secondPassword.onBlur} value={secondPassword.value} className={`auth__input ${isSecondPasswordValid && 'auth__input_error'}`} type="password" id="confirm__password" placeholder="Повторите ваш пароль" required />
+                {registerError && <p className="auth__error" style={{color: 'red'}}>{registerError}</p>}
                 <button disabled={isValid} className="auth__submit" type="submit">Зарегистрироваться</button>
             </form>
         </div>
     )
 };
 
-export default Register
+export default Register;
