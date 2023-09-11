@@ -3,6 +3,7 @@
 }
 
 html {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -22,6 +23,7 @@ input:focus {
 
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__title/header__title.css);
+@import url(./blocks/header/__logout/header__logout.css);
 
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/auth/__login/auth__login.css);
@@ -34,3 +36,29 @@ input:focus {
 @import url(./blocks/auth/__error/auth__error.css);
 @import url(./blocks/auth/__input/_error/auth__input_error.css);
 @import url(./blocks/auth/__submit/auth__submit.css);
+
+@import url(./blocks/user-page/user-page.css);
+@import url(./blocks/user-page/__profile/user-page__profile.css);
+@import url(./blocks/user-page/__profile/__avatar/user-page__profile__avatar.css);
+@import url(./blocks/user-page/__profile/__avatar/__image/user-page__profile__avatar__image.css);
+@import url(./blocks/user-page/__profile/__avatar/__edit/user-page__profile__avatar__edit.css);
+@import url(./blocks/user-page/__profile/__edit/user-page__profile__edit.css);
+@import url(./blocks/user-page/__profile/__container/user-page__profile__container.css);
+@import url(./blocks/user-page/__profile/__name/user-page__profile__name.css);
+@import url(./blocks/user-page/__profile/__edit/user-page__profile__edit.css);
+@import url(./blocks/user-page/__profile/__messages/user-page__profile__messages.css);
+@import url(./blocks/post/post.css);
+@import url(./blocks/post/__title/post__title.css);
+@import url(./blocks/post/__submit/post__submit.css);
+@import url(./blocks/post/__input/post__input.css);
+@import url(./blocks/post/__container/post__container.css);
+
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__title/footer__title.css);
+@import url(./blocks/footer/__links/footer__links.css);
+@import url(./blocks/footer/__link/footer__link.css);
+@import url(./blocks/footer/__link/footer__link-vk.css);
+@import url(./blocks/footer/__link/footer__link-tg.css);
+@import url(./blocks/footer/__link/footer__link-git.css);
+@import url(./blocks/footer/__copyright/footer__copyright.css);
+@import url(./blocks/footer/__container/footer__container.css);

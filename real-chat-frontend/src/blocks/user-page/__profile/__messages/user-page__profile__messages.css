@@ -1,0 +1,17 @@
+.user-page__profile__messages {
+    grid-area: message;
+    background-image: url(../../../../asset/message1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    border: none;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    transition: background-image .5s ease;
+}
+
+.user-page__profile__messages:hover {
+    background-image: url(../../../../asset/message-open.svg);
+}

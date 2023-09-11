@@ -1,0 +1,20 @@
+.user-page__profile__avatar__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    transition: background .5s ease;
+}
+
+.user-page__profile__avatar__edit:hover {
+    background: url(../../../../../asset/edit-button-white.svg) no-repeat center;
+    background-size: 26px 26px;
+    background-color: rgba(0, 0, 0, .8);
+    color: white;
+}

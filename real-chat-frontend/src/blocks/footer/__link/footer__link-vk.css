@@ -1,0 +1,17 @@
+.footer__link-vk {
+  display: inline-block;
+  margin-right: 10px;
+  background-image: url(../../../asset/icons8-vk.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 768px) {
+  .footer__link-vk {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+}

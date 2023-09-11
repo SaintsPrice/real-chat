@@ -1,0 +1,14 @@
+.header__logout {
+    border: none;
+    background-color: var(--background-color);
+    font-family: 'poppins';
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: color .5s ease;
+}
+
+.header__logout:hover {
+    color: #3366BB;
+}

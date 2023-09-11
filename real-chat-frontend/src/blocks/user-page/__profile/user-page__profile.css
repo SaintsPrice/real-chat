@@ -1,0 +1,11 @@
+.user-page__profile {
+    position: relative;
+    padding-top: 50px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "image name message"
+    "image . message";
+}

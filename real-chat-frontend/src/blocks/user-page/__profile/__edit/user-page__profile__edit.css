@@ -1,0 +1,12 @@
+.user-page__profile__edit {
+    background-image: url(../../../..//asset/edit-button.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+}

@@ -1,0 +1,11 @@
+.post__input {
+    resize: none;
+    margin-top: 15px;
+    font-family: 'poppins';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 15px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid grey;
+}

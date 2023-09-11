@@ -1,0 +1,7 @@
+.user-page__profile__avatar {
+    display: grid;
+    grid-area: image;
+    position: relative;
+    width: 120px;
+    height: 120px;
+}

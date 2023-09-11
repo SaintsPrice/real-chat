@@ -1,0 +1,4 @@
+.user-page__profile__container {
+    grid-area: name;
+    display: flex;
+}

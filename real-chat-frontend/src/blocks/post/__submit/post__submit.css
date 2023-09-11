@@ -1,0 +1,14 @@
+.post__submit {
+    background: url(../../../asset/post-submit.svg) no-repeat center;
+    background-size: contain;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background 1s ease;
+}
+
+.post__submit:hover {
+    background: url(../../../asset/post-submit-hover.svg) no-repeat center;
+    background-size: contain;
+}
