@@ -53,6 +53,20 @@ input:focus {
 @import url(./blocks/post/__input/post__input.css);
 @import url(./blocks/post/__container/post__container.css);
 
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_open/popup_open.css);
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__close/popup__close.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__label/popup__label.css);
+@import url(./blocks/popup/__label/__avatar/popup__label__avatar.css);
+@import url(./blocks/popup/__label/__avatar/__image/popup__label__avatar__image.css);
+@import url(./blocks/popup/__label/__avatar/__title/popup__label__avatar__title.css);
+@import url(./blocks/popup/__input/popup__input.css);
+@import url(./blocks/popup/__file/popu__file.css);
+@import url(./blocks/popup/__input/__avatar/popup__input__avatar.css);
+@import url(./blocks/popup/__submit/popup__submit.css);
+
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__title/footer__title.css);
 @import url(./blocks/footer/__links/footer__links.css);

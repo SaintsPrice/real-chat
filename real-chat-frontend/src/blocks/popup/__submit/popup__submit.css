@@ -1,0 +1,16 @@
+.popup__submit {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 32px;
+    font-family: 'poppins', 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25.5px;
+    background-color: #0C21C1;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.popup__submit:disabled {
+    background-color: gray;
+}

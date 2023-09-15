@@ -1,6 +1,6 @@
 .auth {
     display: flex;
-    height: 80vh;
+    height: calc(100vh - 71px);
     justify-content: center;
     align-items: center;
 }

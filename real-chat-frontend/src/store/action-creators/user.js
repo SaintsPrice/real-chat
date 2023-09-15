@@ -1,4 +1,5 @@
 import AuthService from "../../services/authService";
+import UserService from "../../services/userService";
 import { FETCH_AUTH, FETCH_AUTH_ERROR, FETCH_AUTH_LOGIN_ERROR, FETCH_AUTH_REGISTER_ERROR, FETCH_AUTH_SUCCESS, LOGOUT } from "../reducers/userReducer";
 
 export function registration(email, name, secondName, password) {
@@ -7,7 +8,7 @@ export function registration(email, name, secondName, password) {
             dispatch({type: FETCH_AUTH})
             const {data} = await AuthService.registration(email, name, secondName, password)
             localStorage.setItem('token', data.accessToken)
-            dispatch({type: FETCH_AUTH_SUCCESS, payload: data})
+            dispatch({type: FETCH_AUTH_SUCCESS, payload: data.user})
         }
         catch(e) {
             dispatch({
@@ -24,7 +25,7 @@ export function login(email, password) {
             dispatch({type: FETCH_AUTH})
             const {data} = await AuthService.login(email, password)
             localStorage.setItem('token', data.accessToken)
-            dispatch({type: FETCH_AUTH_SUCCESS, payload: data})
+            dispatch({type: FETCH_AUTH_SUCCESS, payload: data.user})
         }
         catch(e) {
             dispatch({
@@ -40,7 +41,7 @@ export function checkAuth() {
             dispatch({type: FETCH_AUTH})
             const {data} = await AuthService.checkAuth()
             localStorage.setItem('token', data.accessToken)
-            dispatch({type: FETCH_AUTH_SUCCESS, payload: data})
+            dispatch({type: FETCH_AUTH_SUCCESS, payload: data.user})
         }
         catch(e) {
             dispatch({
@@ -58,6 +59,38 @@ export function logout() {
             await AuthService.logout()
             localStorage.removeItem('token')
             dispatch({type: LOGOUT})
+        }
+        catch(e) {
+            dispatch({
+                type: FETCH_AUTH_ERROR,
+                payload: e.response.data.message
+            })
+        }
+    }
+};
+
+export function updateName (name, secondName) {
+    return async(dispatch) => {
+        try {
+            dispatch({type: FETCH_AUTH})
+            const {data} = await UserService.updateName(name, secondName)
+            dispatch({type: FETCH_AUTH_SUCCESS, payload: data})
+        }
+        catch(e) {
+            dispatch({
+                type: FETCH_AUTH_ERROR,
+                payload: e.response.data.message
+            })
+        }
+    }
+};
+
+export function updateAvatar (avatar) {
+    return async(dispatch) => {
+        try {
+            dispatch({type: FETCH_AUTH})
+            const {data} = await UserService.updateAvatar(avatar)
+            dispatch({type: FETCH_AUTH_SUCCESS, payload: data})
         }
         catch(e) {
             dispatch({

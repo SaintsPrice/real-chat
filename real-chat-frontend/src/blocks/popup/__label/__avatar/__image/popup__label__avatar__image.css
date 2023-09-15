@@ -1,0 +1,12 @@
+.popup__label__avatar__image {
+    display: inline-block;
+    background: url(../../../../..//asset/avatar-file.svg) center no-repeat;
+    background-size: 40px 40px;
+    height: 40px;
+    width: 40px;
+    color: #FFFFFF;
+    background-color: #0C21C1;
+    cursor: pointer;
+    padding: 10px;
+    border-right: 2px solid #FFFFFF;
+}

@@ -1,0 +1,8 @@
+.popup__label__avatar {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 7fr;
+    gap: 4px;
+    background-color: #0C21C1;
+    margin-top: 20px;
+}
