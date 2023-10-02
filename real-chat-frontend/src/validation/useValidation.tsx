@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { IValidations } from "../types/validationType";
 
-function useValidation(value, validations) {
+const useValidation = (value: string, validations: IValidations) => {
 
-    const [isEmpty, setIsEmpty] = useState('');
-    const [minLengthError, setMinLengthError] = useState('');
-    const [maxLengthError, setMaxLengthError] = useState('');
-    const [isEmail, setIsEmail] = useState('')
-    const [isPasswordsEquals, setIsPasswordsEquals] = useState('')
+    const [isEmpty, setIsEmpty] = useState<string>('');
+    const [minLengthError, setMinLengthError] = useState<string>('');
+    const [maxLengthError, setMaxLengthError] = useState<string>('');
+    const [isEmail, setIsEmail] = useState<string>('');
+    const [isPasswordsEquals, setIsPasswordsEquals] = useState<string>('');
 
-    const validateEmail = (email) => {
+    const validateEmail = (email: string): RegExpMatchArray | null => {
         return String(email)
           .toLowerCase()
           .match(
@@ -71,13 +72,14 @@ function useValidation(value, validations) {
         }
     }, [value]);
 
-    return [
+    const validMessage = [
         isEmpty,
         minLengthError,
         maxLengthError,
         isEmail,
-        isPasswordsEquals
-    ]
+        isPasswordsEquals].filter(message => message != '').join(' ')
+
+    return validMessage
 };
 
 export default useValidation;

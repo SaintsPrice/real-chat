@@ -1,17 +1,22 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { FC, useState } from "react";
 import UserNamePopup from "../components/UserNamePopup";
 import UserAvatarPopup from "../components/UserAvatarPopup";
-import { REACT_APP_API_URL } from "../utils/const";
+import { AUTH_ROUTE, REACT_APP_API_URL } from "../utils/const";
+import { useTypeSelector } from "../hooks/useTypedSelector";
+import { Navigate } from "react-router-dom";
 
-function UserPage() {
+const UserPage: FC = () => {
 
-    const {user} = useSelector(state => state.user);
-    console.log(user)
+    const {user} = useTypeSelector(state => state.user);
 
+    if(!user) {
+        return (
+            <Navigate to={AUTH_ROUTE} />
+        )
+    }
     
-    const [namePopupIsOpen, setNamePopupIsOpen] = useState(false)
-    const [avatarPopupIsOpen, setAvatarPopupIsOpen] = useState(false)
+    const [namePopupIsOpen, setNamePopupIsOpen] = useState<boolean>(false);
+    const [avatarPopupIsOpen, setAvatarPopupIsOpen] = useState<boolean>(false);
 
     function handleOpenNamePopup() {
         setNamePopupIsOpen(true)
@@ -42,7 +47,7 @@ function UserPage() {
             <form className="post" style={{marginTop: "50px"}}>
                 <label className="post__title" htmlFor="post">Напишите свой пост</label>
                 <div className="post__container">
-                    <textarea className="post__input" type="text" id="post" cols={90} rows={6} placeholder="Напишите что-нибудь" />
+                    <textarea className="post__input" id="post" cols={90} rows={6} placeholder="Напишите что-нибудь" />
                     <button className="post__submit" />
                 </div>
             </form>

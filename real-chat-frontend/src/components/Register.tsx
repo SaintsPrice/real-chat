@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import useInput from "../validation/useInput";
 import { useActions } from "../hooks/useActions";
-import { useSelector } from "react-redux";
+import { useTypeSelector } from "../hooks/useTypedSelector";
 
-function Register({onHandleLogin}) {
+interface IRegisterProps {
+    onHandleLogin: () => void
+};
 
-    const [confirmPassword, setConfirmPassword] = useState('');
+const Register: FC<IRegisterProps> = ({onHandleLogin}) => {
+
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
 
     const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isEmail: true});
     const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
@@ -21,16 +25,16 @@ function Register({onHandleLogin}) {
 
     const isValid = email.validMessages.length > 0 || name.validMessages.length > 0 || secondName.validMessages.length > 0|| password.validMessages.length > 0 || secondPassword.validMessages.length > 0;
 
-    function handleConfirmPassword(e) {
+    function handleConfirmPassword(e: React.ChangeEvent<HTMLInputElement>) {
         setConfirmPassword(e.target.value)
         password.onChange(e)
     };
 
-    const {registerError} = useSelector(state => state.user)
+    const {registerError} = useTypeSelector(state => state.user);
     const {registration} = useActions();
 
-    function handleSubmit(e) {
-        e.preventDefault(e)
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
         registration(email.value, name.value, secondName.value, password.value)
     };
 

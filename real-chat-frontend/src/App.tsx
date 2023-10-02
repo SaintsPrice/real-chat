@@ -3,8 +3,9 @@ import {BrowserRouter} from 'react-router-dom'
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { FC } from 'react';
 
-function App() {
+const App: FC = () => {
   return (
     <BrowserRouter>
       <Header />
@@ -14,6 +15,6 @@ function App() {
       <Footer />
     </BrowserRouter>
   );
-}
+};
 
 export default App;

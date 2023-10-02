@@ -1,24 +1,33 @@
 import { useActions } from "../hooks/useActions";
 import Popup from "./Popup";
-import {useState} from 'react';
+import {FC, useState} from 'react';
 
-function UserAvatarPopup({isOpen, handleClose}) {
+interface IUserAvatarPopupProps {
+    isOpen: boolean;
+    handleClose: () => void;
+};
 
-    const [file, setFile] = useState(null);
+const UserAvatarPopup: FC<IUserAvatarPopupProps> = ({isOpen, handleClose}) => {
+
+    const [file, setFile] = useState<File | null>(null);
 
     const {updateAvatar} = useActions()
 
-    function handleFile(e) {
-        setFile(e.target.files[0])
+    function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+        if(e.target.files) {
+            setFile(e.target.files[0])
+        }
     };
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const formData = new FormData()
-        formData.append("avatar", file)
-        updateAvatar(formData)
-        handleClose()
-    }
+        if(file) {
+            const formData = new FormData()
+            formData.append("avatar", file)
+            updateAvatar(formData)
+            handleClose()
+        }
+    };
 
     return (
         <Popup isOpen={isOpen} handleSubmit={handleSubmit} handleClose={handleClose}>

@@ -1,4 +1,13 @@
-function Popup({children, isOpen, handleClose, handleSubmit}) {
+import { FC } from "react";
+
+interface IPopupProps {
+    isOpen: boolean;
+    handleClose: () => void;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    children: React.ReactNode
+};
+
+const Popup: FC<IPopupProps> = ({children, isOpen, handleClose, handleSubmit}) => {
     return (
         <div className={`popup ${isOpen && "popup_open"}`}>
             <form className="popup__form" onSubmit={handleSubmit} noValidate>
@@ -9,4 +18,4 @@ function Popup({children, isOpen, handleClose, handleSubmit}) {
     )
 };
 
-export default Popup
+export default Popup;

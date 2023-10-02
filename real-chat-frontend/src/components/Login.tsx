@@ -1,22 +1,27 @@
-import { useSelector } from "react-redux"
-import useInput from "../validation/useInput"
-import { useActions } from "../hooks/useActions"
+import useInput from "../validation/useInput";
+import { useActions } from "../hooks/useActions";
+import { FC } from 'react';
+import { useTypeSelector } from "../hooks/useTypedSelector";
 
-function Login({onHandleLogin}) {
+interface ILoginProps {
+    onHandleLogin: () => void;
+};
 
-    const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isEmail: true})
-    const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30})
+const Login: FC<ILoginProps> = ({onHandleLogin}) => {
 
-    const isEmailValid = email.isDirty && email.validMessages.length > 0
-    const isPasswordValid = password.isDirty && password.validMessages.length > 0
+    const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isEmail: true});
+    const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
 
-    const isValid = email.validMessages.length > 0 || password.validMessages.length > 0
+    const isEmailValid = email.isDirty && email.validMessages.length > 0;
+    const isPasswordValid = password.isDirty && password.validMessages.length > 0;
 
-    const {login} = useActions()
-    const {loginError} = useSelector(state => state.user)
+    const isValid = email.validMessages.length > 0 || password.validMessages.length > 0;
 
-    function handleSubmit(e) {
-        e.preventDefault(e)
+    const {login} = useActions();
+    const {loginError} = useTypeSelector(state => state.user);
+
+    function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
         login(email.value, password.value)
     };
 
@@ -39,4 +44,4 @@ function Login({onHandleLogin}) {
     )
 };
 
-export default Login
+export default Login;

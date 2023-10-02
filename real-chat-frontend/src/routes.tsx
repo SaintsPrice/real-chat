@@ -9,7 +9,7 @@ export const publicRoutes = [
         path: AUTH_ROUTE,
         Component: Auth
     }
-]
+];
 
 export const authRoutes = [
     {
@@ -24,4 +24,4 @@ export const authRoutes = [
         path: SEARCH_ROUTE,
         Component: SearchPage
     }
-]
+];

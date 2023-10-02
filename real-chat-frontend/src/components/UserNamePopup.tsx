@@ -1,14 +1,26 @@
-import { useSelector } from "react-redux";
 import Popup from "./Popup";
 import useInput from "../validation/useInput";
 import { useActions } from "../hooks/useActions";
+import { FC } from "react";
+import { useTypeSelector } from "../hooks/useTypedSelector";
+import { Navigate } from "react-router-dom";
+import { AUTH_ROUTE } from "../utils/const";
 
-function UserNamePopup({isOpen, handleClose}) {
+interface IUserNamePopupProps {
+    isOpen: boolean;
+    handleClose: () => void
+};
 
-    const {user} = useSelector(state => state.user);
-    console.log(user)
+const UserNamePopup: FC<IUserNamePopupProps> = ({isOpen, handleClose}) => {
 
-    const {updateName} = useActions()
+    const {user} = useTypeSelector(state => state.user);
+
+    if(!user) {
+        return (
+            <Navigate to={AUTH_ROUTE} />
+        )
+    };
+    const {updateName} = useActions();
 
     const name = useInput(user.name, {isEmpty: false, minLength: 3, maxLength: 30});
     const secondName = useInput(user.secondName, {isEmpty: false, minLength: 3, maxLength: 30});
@@ -18,7 +30,7 @@ function UserNamePopup({isOpen, handleClose}) {
 
     const isValid = isNameValid || isSecondNameValid;
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         updateName(name.value, secondName.value)
         handleClose()

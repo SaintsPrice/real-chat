@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import {Navigate} from 'react-router-dom'
 import Login from "../components/Login";
 import Register from "../components/Register";
-import { useSelector } from "react-redux";
 import { USER_ROUTE } from "../utils/const";
+import { useTypeSelector } from "../hooks/useTypedSelector";
 
-function Auth() {
+const Auth: FC = () => {
 
-    const [isLogin, setIsLogin] = useState(true)
+    const [isLogin, setIsLogin] = useState(true);
 
     function onHandleLogin() {
         setIsLogin(!isLogin)
-    }
+    };
 
-    const {isAuth} = useSelector(state => state.user)
+    const {isAuth} = useTypeSelector(state => state.user);
 
     return (
         <div className="auth">
@@ -21,6 +21,6 @@ function Auth() {
             {isAuth && <Navigate to={USER_ROUTE} />}
         </div>
     )
-}
+};
 
-export default Auth
+export default Auth;
